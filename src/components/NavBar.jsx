@@ -1,26 +1,132 @@
 import CartWidget from "./CartWidget"
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
+const navigation = [
+    { name: 'Home', href: '#', current: true },
+    { name: 'Productos', href: '#', current: false },
+    { name: 'Contacto', href: '#', current: false },
+    { name: 'Acerca de', href: '#', current: false },
+]
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const NavBar = () => {
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Disoluto</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link">Home</a>
-                        <a class="nav-link">Productos</a>
-                        <a class="nav-link">Contacto</a>
-                        <a class="nav-link">Acerca de</a>
+        <Disclosure as="nav" className="bg-gray-800">
+            {({ open }) => (
+                <>
+                    <div className="mx-auto px-2 sm:px-6 lg:px-8">
+                        <div className="relative flex h-16 items-center justify-between">
+                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+                                {/* Mobile menu button*/}
+                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <span className="sr-only">Open main menu</span>
+                                    {open ? (
+                                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                                    ) : (
+                                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                                    )}
+                                </Disclosure.Button>
+                            </div>
+                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                                <div className="flex items-center">
+                                    <p className="text-lg font-bold text-white"> DISOLUTO</p>
+                                </div>
+                                <div className="hidden sm:ml-6 sm:block">
+                                    <div className="flex space-x-4">
+                                        {navigation.map((item) => (
+                                            <a
+                                                key={item.name}
+                                                href={item.href}
+                                                className={classNames(
+                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'px-3 py-2 rounded-md text-sm font-medium'
+                                                )}
+                                                aria-current={item.current ? 'page' : undefined}
+                                            >
+                                                {item.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                <button
+                                    type="button"
+                                    className="bg-gray-800 p-1 text-gray-400 hover:text-white"
+                                >
+                                    <span className="sr-only">Carrito</span>
+                                    <CartWidget />
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="navbar-nav ms-auto">
-                        <a class="nav-link"><CartWidget/></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+
+                    <Disclosure.Panel className="sm:hidden">
+                        <div className="space-y-1 px-2 pt-2 pb-3">
+                            {navigation.map((item) => (
+                                <Disclosure.Button
+                                    key={item.name}
+                                    as="a"
+                                    href={item.href}
+                                    className={classNames(
+                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        'block px-3 py-2 rounded-md text-base font-medium'
+                                    )}
+                                    aria-current={item.current ? 'page' : undefined}
+                                >
+                                    {item.name}
+                                </Disclosure.Button>
+                            ))}
+                        </div>
+                    </Disclosure.Panel>
+                </>
+            )}
+        </Disclosure>
     )
 }
+
+
+
+
+
+
+// const NavBar = () => {
+//     return (
+//         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+//             <div className="container-fluid">
+//                 <a className="navbar-brand" href="#">Disoluto</a>
+//                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+//                     <span className="navbar-toggler-icon"></span>
+//                 </button>
+//                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+//                         <ul className="navbar-nav">
+//                             <li>
+//                                 <a className="nav-link">Home</a>
+//                             </li>
+//                             <li>
+//                                 <a className="nav-link">Productos</a>
+//                             </li>
+//                             <li>
+//                                 <a className="nav-link">Contacto</a>
+//                             </li>
+//                             <li>
+//                                 <a className="nav-link">Acerca de</a>
+
+//                             </li>
+//                         </ul>
+//                         <ul className="navbar-nav ms-auto">
+//                             <li>
+//                                 <a className="nav-link"><CartWidget /></a>
+//                             </li>
+//                         </ul>
+//                 </div>
+//             </div>
+//         </nav>
+//     )
+// }
 export default NavBar
