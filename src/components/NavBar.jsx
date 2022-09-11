@@ -3,9 +3,9 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Productos', href: '#', current: false },
-    { name: 'Contacto', href: '#', current: false },
+    { name: 'Home', href: '/', current: true },
+    { name: 'Sillas', href: '/category/sillas', current: false },
+    { name: 'Sillones', href: '/category/sillones', current: false },
     { name: 'Acerca de', href: '#', current: false },
 ]
 
@@ -34,7 +34,7 @@ const NavBar = () => {
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex items-center">
-                                    <p className="text-lg font-bold text-white"> DISOLUTO</p>
+                                    <a className="text-lg font-bold text-white" href="/"> DISOLUTO</a>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
