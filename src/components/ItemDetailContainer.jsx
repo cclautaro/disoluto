@@ -8,6 +8,7 @@ const ItemDetailContainer = () => {
 
   const {id} = useParams();
   const [item, setItem] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getItems();
@@ -18,13 +19,14 @@ const ItemDetailContainer = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(setItem(products.productData.find( i => i.id == id)));
+        setLoading(false);
       }, 2000);
     })
   }
 
   return (
     <div className="mt-5">
-        <ItemDetail item = {item} />
+      {loading ? <p>Loading...</p> : <ItemDetail item = {item} />}  
       </div>
   )
 }
