@@ -7,12 +7,10 @@ import products from "./productsData";
 
 
 const ItemListContainer = () => {
-  const [counter, setCounter] = useState(0);
   const [itemsList, setItemsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const {categoryId} = useParams();
-  const handleCounterAdd = () => { setCounter(counter + 1) };
-  const handleCounterRemove = () => { setCounter(counter - 1) };
+  
 
   useEffect(() => {
     setTimeout(() => {
