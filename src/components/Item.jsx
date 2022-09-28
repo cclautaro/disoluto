@@ -7,7 +7,7 @@ function Item({ item }) {
         <div className="my-5 bg-slate-200 max-w-xs h-30 flex flex-col mx-auto border border-gray-400 rounded-md">
             <p className="p-1 text-xl font-semibold text-black flex justify-center rounded-t-[0.290rem] bg-slate-300">{item.title}</p>
             <div className="py-2 flex justify-center">
-                <img src={img(`./${item.id}.jpg`)} className="w-[224x] h-[224px] object-contain" />
+                <img src={item.imageId} className="w-[224x] h-[224px] object-contain" />
             </div>
             <Link to={`/item/${item.id}`}>
                 <div className="px-2 py-3">

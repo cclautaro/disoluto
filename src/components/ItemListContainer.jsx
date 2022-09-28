@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import ItemCounter from "./ItemCounter"
+import { collection, getDocs, getFirestore} from "firebase/firestore";
 import ItemList from "./ItemList";
-import products from "./productsData";
 
 
 
@@ -13,15 +12,20 @@ const ItemListContainer = () => {
   
 
   useEffect(() => {
-    setTimeout(() => {
+    const db = getFirestore();
+    const itemCollection = collection(db, "items");
       if(!categoryId){
-        setItemsList(products.productList);
+        getDocs(itemCollection).then((snapshot) => {
+          setItemsList(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})));
+        });
       }
       else{
-        setItemsList(products.productList.filter(i => i.category == categoryId));
+        getDocs(itemCollection).then((snapshot) => {
+          let lista = snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+          setItemsList(lista.filter( (i) => i.category === categoryId));
+        });
       }
       setLoading(false);
-    }, 2000);
   }, [categoryId]);
 
   return (
