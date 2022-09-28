@@ -15,14 +15,12 @@ const CartProvider = ({ defaultValue = [], children }) => {
     const addItem = (item) => {
         const id = item.id;
         if(isInCart(id)){
-            console.log("ki")
             const i = findProducto(id);
             if(item.quantity != i.quantity){
                 i.quantity = item.quantity;
             }
         }
         else{
-            console.log("we");
             setProductos(prevState => prevState.concat(item))
         }
     };
@@ -42,7 +40,6 @@ const CartProvider = ({ defaultValue = [], children }) => {
     };
 
     const isInCart = (id) => {
-        console.log(id);
         return productos.some((i) => i.id === id);
     };
 
