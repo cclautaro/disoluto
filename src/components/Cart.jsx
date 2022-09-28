@@ -1,8 +1,22 @@
+import { Link } from "react-router-dom";
 import { useCart } from "./context/CartContext"
 
 function Cart() {
 
   const { productos, removeItem } = useCart();
+
+  if(!productos.length){
+    return(
+      <div>
+        <p className="font-light text-base tracking-tight mb-2">No hay items para mostrar</p>
+        <Link to={"/"}>
+                <div className="px-2 py-3">
+                    <button className="border-2 border-sky-500 rounded-md w-full text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white">Volver</button>
+                </div>
+            </Link>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -19,6 +33,7 @@ function Cart() {
                 Eliminar
               </button>
             </div>
+            <hr className="border-2"/>
           </div>
         )}
         <p>precio total: {productos.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</p>
