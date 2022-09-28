@@ -21,6 +21,7 @@ function Cart() {
             </div>
           </div>
         )}
+        <p>precio total: {productos.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</p>
       </div>
     </div>
   )
