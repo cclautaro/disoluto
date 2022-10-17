@@ -35,11 +35,11 @@ function Cart() {
 
   if (!productos.length) {
     return (
-      <div>
-        <p className="font-light text-base tracking-tight mb-2">{mensaje}</p>
+      <div className="px-2 py-3">
+        <p className="font-semibold text-xl tracking-tight mb-2">{mensaje}</p>
         <Link to={"/"}>
-          <div className="px-2 py-3">
-            <button className="border-2 border-sky-500 rounded-md w-full text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white">Volver</button>
+          <div>
+            <button className="border-2 border-sky-500 rounded-md w-1/5 text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white">Volver</button>
           </div>
         </Link>
       </div>
@@ -48,30 +48,31 @@ function Cart() {
 
   return (
     <div>
-      <div>
+      <div className="divide-y-4 divide-gray-400 px-2">
         {productos.map(i =>
           <div>
-            <p>{i.title}</p>
+            <p className="font-bold">{i.title}</p>
             <p>{i.description}</p>
             <p>Estas llevando {i.quantity}</p>
-            <div className="px-2 py-3">
+            <div className="py-3">
               <button
                 onClick={() => { removeItem(i.id) }}
-                className="border-2 border-sky-500 rounded-md w-1/4 text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white px-2 py-2">
+                className="border-2 border-sky-500 rounded-md w-1/4 text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white py-2">
                 Eliminar
               </button>
             </div>
-            <hr className="border-2" />
           </div>
         )}
-        <p>precio total: {total}</p>
       </div>
+      <div className="mt-10 px-2">
+      <p>Precio total: {total}</p>
       <button
-        className="border-2 border-sky-500 rounded-md w-1/4 text-sky-500 text-lg font-regular hover:bg-sky-700 hover:text-white px-2 py-2"
+        className="border-2 border-green-500 rounded-md w-1/4 text-black text-lg font-regular hover:bg-green-700 hover:text-white px-2 py-2 mt-2"
         onClick={orderHandler}
       >
         Finaliza Compra
       </button>
+      </div>
     </div>
   )
 }

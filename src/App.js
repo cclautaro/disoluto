@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import AboutMe from "./components/About/AboutMe";
 import Cart from "./components/Cart";
 import { CartProvider } from "./components/context/CartContext";
 import ItemDetailContainer from "./components/detail/ItemDetailContainer";
@@ -25,6 +26,10 @@ function App() {
             <Route 
             path="/item/:id" 
             element={<ItemDetailContainer />} 
+            />
+              <Route 
+            path="/about" 
+            element={<AboutMe />} 
             />
                <Route 
             path="/cart" 

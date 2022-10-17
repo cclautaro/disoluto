@@ -22,7 +22,7 @@ const NavBar = () => {
                                 <NavLink className={navLinkClass} to='/'>Home</NavLink>
                                 <NavLink className={navLinkClass} to='/category/sillas'>Sillas</NavLink>
                                 <NavLink className={navLinkClass} to='/category/sillones'>Sillones</NavLink>
-                                <NavLink className={navLinkClass} to='/cart'>Acerca De</NavLink>
+                                <NavLink className={navLinkClass} to='/about'>Acerca De</NavLink>
                             </ul>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ const ItemListContainer = () => {
 
   return (
     <div>
-      <div className="mt-5">
+      <div className="mt-5 flex">
       {loading ? <p>Loading...</p> : <ItemList items={itemsList} />}  
         
       </div>
